@@ -1,0 +1,326 @@
+.task-card {
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  padding-bottom: 50px;
+  padding-top: 50px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  overflow-x: auto;
+  background: $gray-900;
+  outline: none;
+
+  &__close {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 16px;
+    right: 16px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+
+    &::after,
+    &::before {
+      content: "";
+      width: 100%;
+      height: 1px;
+      background-color: $blue-gray-300;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transition: background-color 0.3s;
+    }
+
+    &::after {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    &::before {
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+
+    &:hover {
+      &::before,
+      &::after {
+        background-color: $blue-700;
+      }
+    }
+  }
+
+  &__error-text {
+    @include r-s10-h12;
+    color: $red-600;
+  }
+
+  &__wrapper {
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 500px;
+    box-sizing: border-box;
+    padding: 40px;
+    background-color: $white-900;
+    box-shadow: 0 4px 8px $shadow-500;
+  }
+
+  &__block {
+    margin-bottom: 30px;
+  }
+
+  &__name {
+    color: $gray-900;
+    @include m-s24-h21;
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    border-radius: 0;
+    border-bottom: 1px solid transparent;
+    cursor: pointer;
+    width: 100%;
+
+    &:focus:not(:disabled) {
+      border-color: $blue-gray-200;
+      cursor: text;
+    }
+
+    &--disabled {
+      pointer-events: none;
+    }
+
+    &--min {
+      max-width: 59%;
+    }
+  }
+
+  &__row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  &__date {
+    color: $blue-gray-300;
+    @include r-s14-h21;
+    margin-top: 5px;
+  }
+
+  &__participant {
+    display: inline-block;
+    vertical-align: baseline;
+    margin-left: 10px;
+  }
+
+  &__user,
+  &__date-link {
+    border: 0;
+    outline: 0;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+    background-color: transparent;
+    text-align: left;
+    @include r-s14-h16;
+    cursor: pointer;
+    position: relative;
+
+    img {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+  }
+
+  &__user {
+    &:active {
+      color: $blue-gray-300;
+    }
+  }
+
+  &__date-link {
+    @include r-s16-h21;
+    text-decoration: none;
+    color: $gray-900;
+  }
+
+  &__params {
+    @include clear-list;
+    @include r-s16-h21;
+    color: $gray-900;
+    position: relative;
+
+    li {
+      margin-bottom: 15px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  ::v-deep &__link {
+    position: relative;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    margin: 0;
+    padding: 0 23px 0 0;
+    @include r-s16-h21;
+    color: $blue-gray-600;
+    text-decoration: underline;
+    &:after {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 2px;
+      width: 14px;
+      height: 14px;
+      background-image: url("~@/assets/img/icon-pencil.svg");
+      background-size: cover;
+      opacity: 0;
+      transition: opacity .3s;
+    }
+    &:hover {
+      text-decoration: none;
+      &:after {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__links-item {
+    margin-top: 16px;
+    @include r-s14-h21;
+    color: $blue-gray-300;
+
+    a {
+      color: $blue-600;
+    }
+
+    input {
+      font-size: 14px;
+      font-weight: 400;
+      display: block;
+      margin-bottom: 10px;
+      border: 0;
+      outline: 0;
+      width: 100%;
+      font-family: inherit;
+      font-style: normal;
+      line-height: 21px;
+      color: $blue-gray-600;
+    }
+  }
+
+  ::v-deep &__title {
+    @include m-s18-h21;
+    color: $gray-900;
+    margin: 0;
+  }
+
+  &__description {
+    p {
+      color: $blue-gray-600;
+      @include r-s14-h21;
+      margin-top: 16px;
+    }
+
+    textarea {
+      border: 1px solid $gray-100;
+      border-radius: 6px;
+      padding: 16px;
+      outline: none;
+      color: $blue-gray-600;
+      @include r-s14-h21;
+      resize: none;
+      display: block;
+      width: 100%;
+      height: 90px;
+      box-sizing: border-box;
+      margin-top: 16px;
+    }
+  }
+
+  &__files {
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
+
+  &__list {
+    @include clear-list;
+    margin-top: 15px;
+  }
+
+  ::v-deep &__item {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &:hover {
+      .task-card__icons {
+        opacity: 1;
+      }
+    }
+  }
+
+  ::v-deep &__icons {
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 410px;
+    margin-top: 50px;
+  }
+
+  &__comments {
+    margin-top: 20px;
+  }
+
+  &__status {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+
+  &__meta {
+    margin-left: 5px;
+  }
+
+  &__edit {
+    @include r-s14-h16;
+
+    display: block;
+
+    margin: 0;
+    margin-top: 3px;
+    padding: 0;
+
+    cursor: pointer;
+    transition: opacity 0.3s;
+
+    opacity: 0.5;
+    color: $blue-gray-600;
+    border: none;
+    outline: none;
+    background-color: transparent;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &--red {
+      align-self: center;
+      margin-top: 0;
+      color: $red-500;
+    }
+  }
+}
